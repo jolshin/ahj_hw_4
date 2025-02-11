@@ -1,26 +1,7 @@
-// TODO: write code here
+import BinCheckWidget from "./Widget.js"
 
-import Goblin from "./Goblin";
+const parentEl = document.querySelector('.wrapper');
 
-import GameState from "./GameState";
+const form = new BinCheckWidget(parentEl);
 
-Goblin.size = 4;
-Goblin.createField();
-
-setInterval(() => {
-    if (!GameState.paused){
-        Goblin.refreshGrid();
-        GameState.chanceUpdate();
-        GameState.chances--;
-    }
-}, 1000);
-
-document.addEventListener('click', clicklHandeler);
-
-function clicklHandeler(e) {
-    if (e.target.tagName === 'IMG') {
-        GameState.hit();
-    } else {
-        GameState.miss();
-    }
-}
+form.bindToDOM();

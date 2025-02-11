@@ -1,0 +1,40 @@
+
+
+{
+    "MIR" : {
+        "value" : [2200, 2201, 2202, 2203, 2204], 
+        "minlength" : 16,
+        "maxlength" : 19
+    },
+    "Visa" : {
+        "value" : [4, 4026, 417500, 4508, 4844, 4913, 4917], 
+        "minlength" : 13,
+        "maxlength" : 19
+    },
+    "Mastercard" : {
+        "value" : [51, 52, 53, 54, 55, "range", 2221, 2720], 
+        "minlength" : 16,
+        "maxlength" : 16
+    },
+    "JCB" : {
+        "value" : ["range", 3528, 3589], 
+        "minlength" : 16,
+        "maxlength" : 19
+    },
+    "Discover" : {
+        "value" : [6011,644,645,646,647,648,649,65, "range", 622126, 622925], 
+        "minlength" : 16,
+        "maxlength" : 19
+    },
+    "Diners Club" : {
+        "value" : [30,36,38,39,55], 
+        "minlength" : 14,
+        "maxlength" : 16
+    },
+    "American Express" : {
+        "value" : [34, 37], 
+        "minlength" : 15,
+        "maxlength" : 15
+    }
+
+}

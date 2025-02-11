@@ -1,11 +1,109 @@
 body {
     color: #999;
+    padding-left: 20px;
 }
 
-#wrapper {
+.wrapper {
     display: grid;
-  }
+    grid-template-columns: 400px 400px;
+}
 
-.cell {
-    cursor: url('../img/hammer.png'), auto;
+.cards {
+    margin: 10px 0;
+    height: 25px;
+    padding-left: 0
+}
+
+.cards li {
+    display: block;
+    float: left
+}
+
+.card {
+    float: left;
+    width: 39px;
+    height: 25px;
+    text-indent: -9999px;
+    background-position: 0 0;
+    margin-right: 4px
+}
+
+
+.card.disabled {
+    background-position: 0 -25px;
+    opacity: .3
+}
+
+.card.visa {
+    background-image: url(../img/visa.png)
+}
+
+.card.amex {
+    background-image: url(../img/americanexpress.png)
+}
+
+.card.jcb {
+    background-image: url(../img/jcb.png)
+}
+
+.card.master {
+    background-image: url(../img/mastercard.png)
+}
+
+.card.discover {
+    background-image: url(../img/discover.png)
+}
+
+.card.diners_club {
+    background-image: url(../img/dinersclub.png)
+}
+
+.card.mir {
+    background-image: url(../img/mir.png)
+}
+
+.test {
+
+    padding-top: 20px;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+}
+
+.table>tbody>tr>td,.table>tbody>tr>th,.table>tfoot>tr>td,.table>tfoot>tr>th,.table>thead>tr>td,.table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd
+}
+
+
+.table-condensed>tbody>tr>td,.table-condensed>tbody>tr>th,.table-condensed>tfoot>tr>td,.table-condensed>tfoot>tr>th,.table-condensed>thead>tr>td,.table-condensed>thead>tr>th {
+    padding: 5px
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9
+}
+
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.glyphicon-ok:before {
+    content: "\e013"
+}
+
+.glyphicon-remove {
+    content: "\e014"
 }
