@@ -38,8 +38,6 @@ describe("MII, IIN, Luhn check tests", () => {
     ['220344434743128121832', 'MIR', false, false],
   ])('check card number %s (should get cards issuer: %s, IIN and MII check: %s, Luhn: %s)', (data, payment, iin, luhn) => {
 
-    console.log(data)
-
     const result = [miiCheck(_list, data)[0], iinCheck(_list, data), luhnCheck(data)];
     const expected = [payment, iin, luhn];
 
