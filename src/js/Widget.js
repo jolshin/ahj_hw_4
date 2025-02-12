@@ -1,6 +1,7 @@
 import binList from "./data-loader.js";
 import luhnCheck from "./Luhn.js";
 import iinCheck from "./iin-check.js";
+import miiCheck from "./mii-check.js";
 
 
 export default class BinCheckWidget {
@@ -8,8 +9,8 @@ export default class BinCheckWidget {
         this.parentEl = parentEl;
         this.binList = binList();
 
-        this.onSubmit = this.onSubmit.bind(this)
-        this.onInput = this.onInput.bind(this)
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onInput = this.onInput.bind(this);
     }
 
     static get markup() {
@@ -46,7 +47,7 @@ export default class BinCheckWidget {
                 </h3>
                 <p class="updateiin" style="display: block;">The first six or eight digits of a card number (including the initial MII digit) are known as the issuer identification number.
                 These identify the card issuing institution that issued the card to the card holder.</p>
-                <p class="validiin" style="display: none;">This credit card number belongs to the <strong>Travel and entertainment and banking/financial</strong> industry.</p>
+                <p class="validiin" style="display: none;"></p>
                 <p class="novalidiin" style="display: none;">We couldn't find an institution that matched your credit card number. Sorry.</p>
             </div>
         `;
@@ -69,7 +70,7 @@ export default class BinCheckWidget {
     }
 
     static get checkSelector() {
-        return '.bin-check'
+        return '.bin-check';
     }
 
     bindToDOM() {
@@ -84,7 +85,7 @@ export default class BinCheckWidget {
         this.checkEl = this.parentEl.querySelector(BinCheckWidget.checkSelector);
 
         this.formEl.addEventListener('submit', this.onSubmit);
-        this.formEl.addEventListener('input', this.onInput)
+        this.formEl.addEventListener('input', this.onInput);
     }
 
     onSubmit(e) {
@@ -114,6 +115,7 @@ export default class BinCheckWidget {
             this.checkEl.querySelector('span.validiin').style.display = 'inline-block';
             this.checkEl.querySelector('span.novalidiin').style.display = 'none';
             this.checkEl.querySelector('p.validiin').style.display = 'inline-block';
+            this.checkEl.querySelector('p.validiin').textContent = `This credit card's issuer is ${miiCheck(this.binList, this.input.value)[0]}`;
             this.checkEl.querySelector('p.novalidiin').style.display = 'none';
             this.checkEl.querySelector('p.updateiin').style.display = 'none';
         } else if (this.input.value === ''){
@@ -134,32 +136,23 @@ export default class BinCheckWidget {
     }
 
     onInput(e) {
-        let data = e.target.value
-        let payment = [];
+        let data = e.target.value;
 
-        for (const [key, value] of Object.entries(this.binList)) {
-            for (let item of value.value) {
-                let number = item.toString();
-                if (data.indexOf(number) === 0) {
-                    payment.push(key);
-                }
-            }
-        }
+        let payment = miiCheck(this.binList, data);
 
         if (data) {
             for (let li of this.li) {
                 if (!payment.includes(li.title)) {
-                    li.classList.add('disabled')
+                    li.classList.add('disabled');
                 } else {
-                    li.classList.remove('disabled')
+                    li.classList.remove('disabled');
                 }
             }
 
         } else if (!data){
             for (let li of this.li) {
-                li.classList.remove('disabled')
+                li.classList.remove('disabled');
             }
-
         }
     }
 }
